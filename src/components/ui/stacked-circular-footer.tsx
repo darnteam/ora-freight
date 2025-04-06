@@ -1,4 +1,3 @@
-import { Icons } from "./icons"
 import { Button } from "./button"
 import { Input } from "./input"
 import { Label } from "./label"
@@ -30,9 +29,22 @@ function StackedCircularFooter() {
     <footer className="bg-white dark:bg-neutral-950 py-12">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center">
-          <div className="mb-8 rounded-full bg-neutral-100 dark:bg-neutral-900 p-8">
-            <Icons.logo />
+          {/* Replace Icons.logo with actual logo image */}
+          <div className="mb-8">
+            <a href="#/" className="relative flex items-center">
+              <img 
+                src={process.env.PUBLIC_URL + '/assets/logo.png'} 
+                alt="Ora Freight Logo"
+                className="h-48 w-auto" 
+                onError={(e) => {
+                  console.error("Logo failed to load");
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                }}
+              />
+            </a>
           </div>
+          
           <nav className="mb-8 flex flex-wrap justify-center gap-6">
             <a href="#/" onClick={handleNavLinkClick} className="text-neutral-700 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white">Home</a>
             <a href="#features" onClick={handleNavLinkClick} className="text-neutral-700 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white">Features</a>
@@ -40,6 +52,7 @@ function StackedCircularFooter() {
             <a href="#/about" onClick={handleNavLinkClick} className="text-neutral-700 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white">About</a>
             <a href="#/contact" onClick={handleNavLinkClick} className="text-neutral-700 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white">Contact</a>
           </nav>
+          
           <div className="mb-8 flex space-x-4">
             <Button variant="outline" size="icon" className="rounded-full">
               <Facebook className="h-4 w-4" />
@@ -58,6 +71,7 @@ function StackedCircularFooter() {
               <span className="sr-only">LinkedIn</span>
             </Button>
           </div>
+          
           <div className="mb-8 w-full max-w-md">
             <form className="flex space-x-2">
               <div className="flex-grow">
@@ -67,6 +81,7 @@ function StackedCircularFooter() {
               <Button type="submit" className="rounded-full">Subscribe</Button>
             </form>
           </div>
+          
           <div className="text-center">
             <p className="text-sm text-gray-500 dark:text-gray-400">
               © {new Date().getFullYear()} Ora Freight. All rights reserved.
