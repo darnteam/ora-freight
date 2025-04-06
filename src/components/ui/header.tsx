@@ -57,7 +57,7 @@ function Header1({
                         <img 
                             src={process.env.PUBLIC_URL + '/assets/logo.png'} 
                             alt="Ora Freight Logo"
-                            className="h-36 w-auto" 
+                            className="h-24 md:h-36 w-auto" 
                             onError={(e) => {
                                 console.error("Logo failed to load");
                                 const target = e.target as HTMLImageElement;
@@ -76,7 +76,7 @@ function Header1({
                 {/* Right side - Action buttons */}
                 <div className="flex items-center gap-4">
                     <ThemeToggle size="lg" />
-                    <Button size="lg" className="px-6 py-2 text-base">Get Started</Button>
+                    <Button size="lg" className="px-6 py-2 text-xs sm:text-sm">Get Started</Button>
                     
                     {/* Mobile menu button */}
                     <Button 
