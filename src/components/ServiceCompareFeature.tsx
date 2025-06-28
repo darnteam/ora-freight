@@ -86,9 +86,11 @@ const ServiceCompareFeature: React.FC<ServiceCompareFeatureProps> = ({ id }) => 
       />
       
       <div className="mt-auto pt-4 px-4">
-        <Button variant="default" className="w-full">
-          Get Started
-        </Button>
+        <a href="#/get-started">
+          <Button variant="default" className="w-full">
+            Get Started
+          </Button>
+        </a>
       </div>
     </div>
   );

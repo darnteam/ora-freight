@@ -21,7 +21,7 @@ function AnimatedHero({
   description = "Our services are designed to help independent truckers and small fleets manage their businesses more efficiently. From load booking to instant payments, we provide the tools you need to succeed.",
   primaryButtonText = "Get Started",
   secondaryButtonText = "Contact Us",
-  primaryButtonHref = "#/contact",
+  primaryButtonHref = "#/get-started",
   secondaryButtonHref = "#/contact",
   showSecondaryButton = true,
 }: AnimatedHeroProps) {

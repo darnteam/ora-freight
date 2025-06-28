@@ -76,7 +76,9 @@ function Header1({
                 {/* Right side - Action buttons */}
                 <div className="flex items-center gap-4">
                     <ThemeToggle size="lg" />
-                    <Button size="lg" className="px-6 py-2 text-xs sm:text-sm">Get Started</Button>
+                    <a href="#/get-started">
+                        <Button size="lg" className="px-6 py-2 text-xs sm:text-sm">Get Started</Button>
+                    </a>
                     
                     {/* Mobile menu button */}
                     <Button 
@@ -104,7 +106,9 @@ function Header1({
                             </div>
                         ))}
                         <div className="px-2 pt-4 mt-2 border-t border-gray-200 dark:border-gray-800">
-                            <Button className="w-full">Get Started</Button>
+                            <a href="#/get-started">
+                                <Button className="w-full">Get Started</Button>
+                            </a>
                         </div>
                     </div>
                 )}

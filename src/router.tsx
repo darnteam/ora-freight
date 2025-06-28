@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage';
 import ServicesPage from './pages/ServicesPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
+import GetStartedPage from './pages/GetStartedPage';
 import { Header1 } from './components/ui/header';
 import Footer from './components/Footer';
 
@@ -24,6 +25,10 @@ const ROUTES = {
   '/contact': {
     component: ContactPage,
     title: 'Contact',
+  },
+  '/get-started': {
+    component: GetStartedPage,
+    title: 'Get Started',
   },
 };
 

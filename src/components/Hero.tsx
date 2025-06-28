@@ -6,7 +6,7 @@ const Hero: React.FC = () => {
     <BackgroundPaths 
       title="Run Your Trucking Business Smarter" 
       buttonText="Get Started" 
-      buttonLink="#features"
+      buttonLink="#/get-started"
     />
   );
 };
