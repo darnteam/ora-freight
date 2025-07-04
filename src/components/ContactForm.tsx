@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
+import emailjs from '@emailjs/browser';
 import {
   Accordion,
   AccordionContent,
@@ -20,6 +21,83 @@ interface FormSection {
 }
 
 const ContactForm: React.FC = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  // Form state
+  const [form, setForm] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    company: '',
+    fleetSize: '',
+    years: '',
+    interest: {
+      virtualCarrier: false,
+      flex: false,
+      notSure: false,
+    },
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, checked } = e.target;
+    if (name in form.interest) {
+      setForm((prev) => ({
+        ...prev,
+        interest: { ...prev.interest, [name]: checked },
+      }));
+    } else {
+      setForm((prev) => ({ ...prev, [name]: value }));
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSending(true);
+    setError(null);
+
+    const templateParams = {
+      first_name: form.firstName,
+      last_name: form.lastName,
+      email: form.email,
+      phone: form.phone,
+      company: form.company,
+      fleet_size: form.fleetSize,
+      years: form.years,
+      interest: Object.entries(form.interest)
+        .filter(([_, v]) => v)
+        .map(([k]) => k)
+        .join(', '),
+    };
+
+    try {
+      await emailjs.send(
+        'service_61oc16p',
+        'template_cqsc4az',
+        templateParams,
+        'ZMTe85RW82QvzQAau'
+      );
+      setSent(true);
+      setForm({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        company: '',
+        fleetSize: '',
+        years: '',
+        interest: { virtualCarrier: false, flex: false, notSure: false },
+      });
+    } catch (err) {
+      setError('Failed to send. Please try again.');
+    } finally {
+      setSending(false);
+    }
+  };
+
   const sections: FormSection[] = [
     {
       id: "1",
@@ -27,8 +105,8 @@ const ContactForm: React.FC = () => {
       title: "Personal Information",
       children: (
         <div className="flex flex-col gap-2">
-          <Input type="text" placeholder="First Name" />
-          <Input type="text" placeholder="Last Name" />
+          <Input type="text" name="firstName" placeholder="First Name" value={form.firstName} onChange={handleChange} required />
+          <Input type="text" name="lastName" placeholder="Last Name" value={form.lastName} onChange={handleChange} required />
         </div>
       ),
     },
@@ -38,8 +116,8 @@ const ContactForm: React.FC = () => {
       title: "Contact Information",
       children: (
         <div className="flex flex-col gap-2">
-          <Input type="email" placeholder="Email" />
-          <Input type="tel" placeholder="Phone" />
+          <Input type="email" name="email" placeholder="Email" value={form.email} onChange={handleChange} required />
+          <Input type="tel" name="phone" placeholder="Phone" value={form.phone} onChange={handleChange} />
         </div>
       ),
     },
@@ -49,9 +127,9 @@ const ContactForm: React.FC = () => {
       title: "Business Information",
       children: (
         <div className="flex flex-col gap-2">
-          <Input type="text" placeholder="Company Name (optional)" />
-          <Input type="text" placeholder="Fleet Size" />
-          <Input type="text" placeholder="Years in Business" />
+          <Input type="text" name="company" placeholder="Company Name (optional)" value={form.company} onChange={handleChange} />
+          <Input type="text" name="fleetSize" placeholder="Fleet Size" value={form.fleetSize} onChange={handleChange} />
+          <Input type="text" name="years" placeholder="Years in Business" value={form.years} onChange={handleChange} />
         </div>
       ),
     },
@@ -62,15 +140,15 @@ const ContactForm: React.FC = () => {
       children: (
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-2 mb-2">
-            <input type="checkbox" id="virtual-carrier" className="rounded" />
+            <input type="checkbox" id="virtual-carrier" name="virtualCarrier" checked={form.interest.virtualCarrier} onChange={handleChange} className="rounded" />
             <label htmlFor="virtual-carrier">Virtual Carrier</label>
           </div>
           <div className="flex items-center gap-2 mb-2">
-            <input type="checkbox" id="flex" className="rounded" />
+            <input type="checkbox" id="flex" name="flex" checked={form.interest.flex} onChange={handleChange} className="rounded" />
             <label htmlFor="flex">Flex</label>
           </div>
           <div className="flex items-center gap-2">
-            <input type="checkbox" id="not-sure" className="rounded" />
+            <input type="checkbox" id="not-sure" name="notSure" checked={form.interest.notSure} onChange={handleChange} className="rounded" />
             <label htmlFor="not-sure">Not sure - need consultation</label>
           </div>
         </div>
@@ -93,7 +171,11 @@ const ContactForm: React.FC = () => {
 
         <div className="flex flex-col md:flex-row gap-8 items-start justify-center">
           {/* Form Section */}
-          <div className="w-full max-w-md bg-white dark:bg-neutral-800 shadow-lg rounded-lg p-6 border border-gray-100 dark:border-gray-700">
+          <form
+            ref={formRef}
+            onSubmit={handleSubmit}
+            className="w-full max-w-md bg-white dark:bg-neutral-800 shadow-lg rounded-lg p-6 border border-gray-100 dark:border-gray-700"
+          >
             <Accordion type="single" collapsible className="w-full">
               {sections.map((section) => (
                 <AccordionItem key={section.id} value={section.id} className="border-b border-gray-200 dark:border-gray-700">
@@ -110,15 +192,16 @@ const ContactForm: React.FC = () => {
                 </AccordionItem>
               ))}
             </Accordion>
-            
             <div className="mt-6">
-              <Button className="w-full">Submit Request</Button>
+              <Button className="w-full" type="submit" disabled={sending}>
+                {sending ? 'Sending...' : sent ? 'Sent!' : 'Submit Request'}
+              </Button>
+              {error && <p className="text-xs text-center text-red-500 mt-2">{error}</p>}
               <p className="text-xs text-center text-gray-500 dark:text-gray-400 mt-3">
                 We respect your privacy and will never share your information with third parties.
               </p>
             </div>
-          </div>
-          
+          </form>
           {/* Contact Info Section */}
           <div className="w-full max-w-md bg-white dark:bg-neutral-800 shadow-lg rounded-lg p-6 border border-gray-100 dark:border-gray-700">
             <h3 className="text-xl font-bold mb-4 text-neutral-800 dark:text-neutral-200">Get in Touch</h3>
