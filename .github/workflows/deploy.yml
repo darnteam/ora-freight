@@ -47,7 +47,7 @@ jobs:
 
       - name: Test SFTP connection
         run: |
-          echo "Testing connection to ${{ secrets.SFTP_HOST }}:22"
+          echo "Testing connection to ${{ secrets.SFTP_HOST }}:65002"
           timeout 30 bash -c "</dev/tcp/${{ secrets.SFTP_HOST }}/22" && echo "Port 22 is reachable" || echo "Port 22 is not reachable"
 
       - name: Deploy to Hostinger via SFTP
