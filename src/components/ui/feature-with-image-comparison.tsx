@@ -40,7 +40,7 @@ function Feature({
     } else if ("clientX" in e) {
       x = e.clientX - rect.left;
     }
-    
+
     const percentage = (x / rect.width) * 100;
     setInset(Math.max(5, Math.min(95, percentage))); // Limit slider to 5%-95% range
   };
@@ -55,16 +55,14 @@ function Feature({
                 <Badge>{badgeText}</Badge>
               </div>
               <div className="flex gap-2 flex-col">
-                <h2 className="gradient-text section-title">
-                  {title}
-                </h2>
+                <h2 className="gradient-text section-title">{title}</h2>
                 <p className="text-lg max-w-xl lg:max-w-xl leading-relaxed tracking-tight text-gray-500 dark:text-gray-400">
                   {description}
                 </p>
               </div>
             </>
           )}
-          
+
           <div className="pt-8 w-full">
             <div
               className="relative aspect-video w-full h-full overflow-hidden rounded-2xl select-none"
@@ -97,9 +95,9 @@ function Feature({
                   <GripVertical className="h-4 w-4 select-none" />
                 </button>
               </div>
-              
+
               {/* Left content (clipped) */}
-              <div 
+              <div
                 className="absolute left-0 top-0 z-10 w-full h-full"
                 style={{
                   clipPath: "inset(0 0 0 " + inset + "%)",
@@ -109,30 +107,32 @@ function Feature({
                 <div className="absolute bottom-4 left-4 z-30 bg-neutral-900/90 dark:bg-white/90 dark:text-black px-3 py-1 rounded-full text-white text-xs font-medium">
                   {leftLabel}
                 </div>
-                
+
                 {/* Left content container */}
                 <div className="w-full h-full bg-white dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-2xl overflow-y-auto">
                   {leftContent}
                 </div>
               </div>
-              
+
               {/* Right content (full) */}
               <div className="absolute left-0 top-0 w-full h-full">
                 {/* Right side label */}
                 <div className="absolute bottom-4 right-4 z-30 bg-gray-600/90 px-3 py-1 rounded-full text-white text-xs font-medium">
                   {rightLabel}
                 </div>
-                
+
                 {/* Right content container */}
                 <div className="w-full h-full bg-white dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-2xl overflow-y-auto">
                   {rightContent}
                 </div>
               </div>
             </div>
-            
+
             {/* Instructions text */}
-            <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-4">
-              ← Slide to compare {leftLabel} and {rightLabel} →
+            <p className="text-center text-xs sm:text-base lg:text-lg text-gray-500 dark:text-gray-400 mt-4">
+              <span className="text-xl sm:text-2xl lg:text-3xl">←</span> Slide
+              to compare {leftLabel} and {rightLabel}{" "}
+              <span className="text-xl sm:text-2xl lg:text-3xl">→</span>
             </p>
           </div>
         </div>
