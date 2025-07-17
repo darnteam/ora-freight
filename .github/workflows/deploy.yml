@@ -51,12 +51,13 @@ jobs:
           timeout 30 bash -c "</dev/tcp/${{ secrets.SFTP_HOST }}/65002" && echo "Port 65002 is reachable" || echo "Port 65002 is not reachable"
 
       - name: Deploy to Hostinger
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        uses: appleboy/scp-action@v0.1.4
         with:
+          host: ${{ secrets.SFTP_HOST }}
           username: ${{ secrets.SFTP_USER }}
-          server: ${{ secrets.SFTP_HOST }}
           password: ${{ secrets.SFTP_PASS }}
           port: 65002
-          local_path: './build/*'
-          remote_path: '/home/u705011221/domains/orafreight.com/public_html/'
-          delete_remote_files: true 
+          source: "build/"
+          target: "/home/u705011221/domains/orafreight.com/public_html"
+          strip_components: 1
+          overwrite: true 
