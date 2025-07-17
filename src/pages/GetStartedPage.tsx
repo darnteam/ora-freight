@@ -222,8 +222,8 @@ const GetStartedPage: React.FC = () => {
             </div>
 
             <div className="text-sm text-gray-500 dark:text-gray-400">
-              <p className="mb-2">🔒 Your information is secure and private</p>
-              <p>✨ No spam, just valuable insights for your business</p>
+              <p className="mb-2">Your information is secure and private</p>
+              <p>No spam, just valuable insights for your business</p>
             </div>
           </div>
         </div>
