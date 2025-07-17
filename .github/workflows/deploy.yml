@@ -50,14 +50,16 @@ jobs:
           echo "Testing connection to ${{ secrets.SFTP_HOST }}:65002"
           timeout 30 bash -c "</dev/tcp/${{ secrets.SFTP_HOST }}/65002" && echo "Port 65002 is reachable" || echo "Port 65002 is not reachable"
 
-      - name: Deploy to Hostinger
-        uses: appleboy/scp-action@v0.1.4
-        with:
-          host: ${{ secrets.SFTP_HOST }}
-          username: ${{ secrets.SFTP_USER }}
-          password: ${{ secrets.SFTP_PASS }}
-          port: 65002
-          source: "build/"
-          target: "/home/u705011221/domains/orafreight.com/public_html"
-          strip_components: 1
-          overwrite: true 
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Deploy to Hostinger using LFTP
+        run: |
+          lftp -c "
+          set sftp:auto-confirm yes
+          set ftp:ssl-allow no
+          open sftp://${{ secrets.SFTP_USER }}:${{ secrets.SFTP_PASS }}@${{ secrets.SFTP_HOST }}:65002
+          cd /home/u705011221/domains/orafreight.com/public_html
+          mirror --reverse --delete --verbose ./build/ .
+          bye
+          " 
