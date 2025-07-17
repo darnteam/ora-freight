@@ -26,6 +26,22 @@ jobs:
         env:
           CI: false
 
+      - name: Verify secrets are available
+        run: |
+          if [ -z "${{ secrets.SFTP_HOST }}" ]; then
+            echo "Error: SFTP_HOST secret is not set"
+            exit 1
+          fi
+          if [ -z "${{ secrets.SFTP_USER }}" ]; then
+            echo "Error: SFTP_USER secret is not set"
+            exit 1
+          fi
+          if [ -z "${{ secrets.SFTP_PASS }}" ]; then
+            echo "Error: SFTP_PASS secret is not set"
+            exit 1
+          fi
+          echo "All SFTP secrets are configured"
+
       - name: Deploy to Hostinger via SFTP
         uses: appleboy/scp-action@v0.1.4
         with:
@@ -33,5 +49,7 @@ jobs:
           username: ${{ secrets.SFTP_USER }}
           password: ${{ secrets.SFTP_PASS }}
           port: 22
-          source: "build/*"  # or "dist/*" if you use Vite!
-          target: "/home/u705011221/domains/orafreight.com/public_html" 
+          source: "build/"
+          target: "/home/u705011221/domains/orafreight.com/public_html"
+          strip_components: 1
+          overwrite: true 
