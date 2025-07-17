@@ -3,7 +3,7 @@ name: Build and Deploy to Hostinger via SFTP
 on:
   push:
     branches:
-      - main  # or your chosen branch
+      - prod
 
 jobs:
   build-deploy:
