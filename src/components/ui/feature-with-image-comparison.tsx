@@ -80,7 +80,7 @@ function Feature({
                 }}
               >
                 <button
-                  className="bg-white dark:bg-neutral-900 rounded hover:scale-110 transition-all w-5 h-10 select-none -translate-y-1/2 absolute top-1/2 -ml-2 z-30 cursor-ew-resize flex justify-center items-center shadow-md border border-gray-200 dark:border-gray-700"
+                  className="bg-white dark:bg-neutral-900 rounded hover:scale-110 transition-all w-10 h-20 select-none -translate-y-1/2 absolute top-1/2 -ml-[18px] z-30 cursor-ew-resize flex justify-center items-center shadow-md border border-gray-200 dark:border-gray-700"
                   onTouchStart={(e) => {
                     setOnMouseDown(true);
                     onMouseMove(e);
@@ -92,7 +92,7 @@ function Feature({
                   onTouchEnd={() => setOnMouseDown(false)}
                   onMouseUp={() => setOnMouseDown(false)}
                 >
-                  <GripVertical className="h-4 w-4 select-none" />
+                  <GripVertical className="h-49 w-9 select-none" />
                 </button>
               </div>
 
@@ -131,7 +131,7 @@ function Feature({
             {/* Instructions text */}
             <p className="text-center text-xs sm:text-base lg:text-lg text-gray-500 dark:text-gray-400 mt-4">
               <span className="text-xl sm:text-2xl lg:text-3xl">←</span> Slide
-              to compare {leftLabel} and {rightLabel}{" "}
+              to compare {leftLabel} and {rightLabel}
               <span className="text-xl sm:text-2xl lg:text-3xl">→</span>
             </p>
           </div>
