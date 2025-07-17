@@ -55,8 +55,8 @@ jobs:
         with:
           username: ${{ secrets.SFTP_USER }}
           server: ${{ secrets.SFTP_HOST }}
-          pass: ${{ secrets.SFTP_PASS }}
+          password: ${{ secrets.SFTP_PASS }}
           port: 65002
           local_path: './build/*'
           remote_path: '/home/u705011221/domains/orafreight.com/public_html/'
-          dangerous_clean: true 
+          delete_remote_files: true 
