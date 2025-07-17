@@ -48,7 +48,7 @@ jobs:
       - name: Test SFTP connection
         run: |
           echo "Testing connection to ${{ secrets.SFTP_HOST }}:65002"
-          timeout 30 bash -c "</dev/tcp/${{ secrets.SFTP_HOST }}/22" && echo "Port 22 is reachable" || echo "Port 22 is not reachable"
+          timeout 30 bash -c "</dev/tcp/${{ secrets.SFTP_HOST }}/65002" && echo "Port 65002 is reachable" || echo "Port 65002 is not reachable"
 
       - name: Deploy to Hostinger via SFTP
         uses: appleboy/ssh-action@v1.0.0
@@ -56,7 +56,7 @@ jobs:
           host: ${{ secrets.SFTP_HOST }}
           username: ${{ secrets.SFTP_USER }}
           password: ${{ secrets.SFTP_PASS }}
-          port: 22
+          port: 65002
           script: |
             mkdir -p /home/u705011221/domains/orafreight.com/public_html
             rm -rf /home/u705011221/domains/orafreight.com/public_html/*
@@ -68,7 +68,7 @@ jobs:
           host: ${{ secrets.SFTP_HOST }}
           username: ${{ secrets.SFTP_USER }}
           password: ${{ secrets.SFTP_PASS }}
-          port: 22
+          port: 65002
           source: "build/"
           target: "/home/u705011221/domains/orafreight.com/public_html"
           strip_components: 1
