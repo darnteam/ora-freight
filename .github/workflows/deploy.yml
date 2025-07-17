@@ -42,8 +42,27 @@ jobs:
             exit 1
           fi
           echo "All SFTP secrets are configured"
+          echo "SFTP Host: ${{ secrets.SFTP_HOST }}"
+          echo "SFTP User: ${{ secrets.SFTP_USER }}"
+
+      - name: Test SFTP connection
+        run: |
+          echo "Testing connection to ${{ secrets.SFTP_HOST }}:22"
+          timeout 30 bash -c "</dev/tcp/${{ secrets.SFTP_HOST }}/22" && echo "Port 22 is reachable" || echo "Port 22 is not reachable"
 
       - name: Deploy to Hostinger via SFTP
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USER }}
+          password: ${{ secrets.SFTP_PASS }}
+          port: 22
+          script: |
+            mkdir -p /home/u705011221/domains/orafreight.com/public_html
+            rm -rf /home/u705011221/domains/orafreight.com/public_html/*
+            echo "Remote directory prepared"
+
+      - name: Upload files via SCP
         uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.SFTP_HOST }}
@@ -53,4 +72,7 @@ jobs:
           source: "build/"
           target: "/home/u705011221/domains/orafreight.com/public_html"
           strip_components: 1
-          overwrite: true 
+          overwrite: true
+          timeout: 60
+          command_timeout: 60
+          debug: true 
