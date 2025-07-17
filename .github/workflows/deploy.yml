@@ -50,18 +50,14 @@ jobs:
           echo "Testing connection to ${{ secrets.SFTP_HOST }}:65002"
           timeout 30 bash -c "</dev/tcp/${{ secrets.SFTP_HOST }}/65002" && echo "Port 65002 is reachable" || echo "Port 65002 is not reachable"
 
-      - name: Upload files via SCP
-        uses: appleboy/scp-action@v0.1.4
+      - name: Deploy to Hostinger
+        uses: liximomo/deploy-action@v2.0.3
         with:
+          type: sftp
           host: ${{ secrets.SFTP_HOST }}
           username: ${{ secrets.SFTP_USER }}
           password: ${{ secrets.SFTP_PASS }}
           port: 65002
-          source: "build/"
-          target: "/home/u705011221/domains/orafreight.com/public_html"
-          strip_components: 1
-          overwrite: true
-          rm: true
-          timeout: 60s
-          command_timeout: 60s
-          debug: true 
+          local: build/
+          remote: /home/u705011221/domains/orafreight.com/public_html/
+          clean: true 
