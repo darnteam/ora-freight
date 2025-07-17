@@ -2,6 +2,9 @@
   "name": "ora-freight",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "dependencies": {
     "@calcom/embed-react": "^1.5.3",
     "@emailjs/browser": "^4.4.1",
