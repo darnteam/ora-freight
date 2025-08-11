@@ -31,7 +31,7 @@ const ContactPage: React.FC = () => {
       <ContactHero />
       <ContactForm />
       
-      {/* Office Locations */}
+      {/*
       <ParticlesBackground className="py-16 bg-white dark:bg-neutral-950">
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-12">
@@ -69,14 +69,14 @@ const ContactPage: React.FC = () => {
             ))}
           </div>
           
-          {/* Map placeholder */}
+         
           <div className="mt-16 bg-gray-100 dark:bg-neutral-800 rounded-xl h-96 flex items-center justify-center">
             <p className="text-gray-500 dark:text-gray-400">
               Interactive map would be displayed here
             </p>
           </div>
         </div>
-      </ParticlesBackground>
+      </ParticlesBackground>*/}
     </>
   );
 };
