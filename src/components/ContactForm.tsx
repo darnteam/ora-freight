@@ -204,7 +204,7 @@ const ContactForm: React.FC = () => {
           </form>
           {/* Contact Info Section */}
           <div className="w-full max-w-md bg-white dark:bg-neutral-800 shadow-lg rounded-lg p-6 border border-gray-100 dark:border-gray-700">
-            <h3 className="text-xl font-bold mb-4 text-neutral-800 dark:text-neutral-200">Get in Touch</h3>
+            <h3 className="text-xl font-bold mb-9 text-neutral-800 dark:text-neutral-200">Get in Touch</h3>
             
             <div className="space-y-4">
               <div className="flex items-start gap-3">
@@ -222,7 +222,7 @@ const ContactForm: React.FC = () => {
                   <p className="text-gray-600 dark:text-gray-400">support@orafreight.com</p>
                 </div>
               </div>
-              
+              {/*
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-neutral-600 dark:text-neutral-400 mt-1" />
                 <div>
@@ -233,10 +233,11 @@ const ContactForm: React.FC = () => {
                   </p>
                 </div>
               </div>
+              */}
             </div>
             
             <div className="mt-6">
-              <h3 className="text-lg font-semibold mb-3 text-neutral-800 dark:text-neutral-200">Business Hours</h3>
+              <h3 className="text-lg font-semibold mb-3 mt-14 text-neutral-800 dark:text-neutral-200">Business Hours</h3>
               <p className="text-gray-600 dark:text-gray-400">Monday - Friday: 8:00 AM - 8:00 PM EST</p>
               <p className="text-gray-600 dark:text-gray-400">Saturday: 9:00 AM - 5:00 PM EST</p>
               <p className="text-gray-600 dark:text-gray-400">Sunday: Closed</p>
