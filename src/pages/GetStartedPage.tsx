@@ -186,7 +186,7 @@ const GetStartedPage: React.FC = () => {
               <div className="p-2">
                 <Cal 
                   namespace="15min"
-                  calLink="artin-rexhepi-h3y5ft/15min"
+                  calLink="operations-team-r6snb8/15min"
                   style={{width:"100%",height:"600px",overflow:"scroll"}}
                   config={{"layout":"month_view","theme":"auto"}}
                 />
