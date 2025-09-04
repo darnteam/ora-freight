@@ -7,7 +7,7 @@ import {
   AccordionTrigger,
 } from "./ui/accordion";
 import { Input } from "./ui/input";
-import { User, Mail, MapPin, Truck, Phone } from "lucide-react";
+import { User, Mail, MapPin, Truck } from "lucide-react";
 import { Button } from "./ui/button";
 
 import { ParticlesBackground } from "./ui/particles-background";
@@ -43,7 +43,7 @@ const ContactForm: React.FC = () => {
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value, checked } = e.target;
     if (name in form.interest) {
       setForm((prev) => ({
         ...prev,
@@ -311,7 +311,7 @@ const ContactForm: React.FC = () => {
                     Email Us
                   </p>
                   <p className="text-gray-600 dark:text-gray-400">
-                    support@orafreight.com
+                    operations@orafreight.com
                   </p>
                 </div>
               </div>

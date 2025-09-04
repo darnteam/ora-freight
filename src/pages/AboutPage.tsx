@@ -1,35 +1,8 @@
 import React from "react";
 import About from "../components/About";
 import AboutHero from "../components/AboutHero";
-import { ParticlesBackground } from "../components/ui/particles-background";
-import { Button } from "../components/ui/button";
-import { MoveRight } from "lucide-react";
 
 const AboutPage: React.FC = () => {
-  const team = [
-    {
-      name: "Jane Smith",
-      role: "CEO & Founder",
-      image:
-        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      bio: "Former trucking company owner with 15+ years of industry experience.",
-    },
-    {
-      name: "Michael Johnson",
-      role: "CTO",
-      image:
-        "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      bio: "Tech expert with a passion for solving transportation logistics challenges.",
-    },
-    {
-      name: "David Williams",
-      role: "Operations Director",
-      image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      bio: "Former fleet manager with expertise in optimizing trucking operations.",
-    },
-  ];
-
   return (
     <>
       <AboutHero />

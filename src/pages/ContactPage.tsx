@@ -1,36 +1,13 @@
-import React from 'react';
-import ContactForm from '../components/ContactForm';
-import ContactHero from '../components/ContactHero';
-import { ParticlesBackground } from '../components/ui/particles-background';
-import { MapPin } from 'lucide-react';
+import React from "react";
+import ContactForm from "../components/ContactForm";
+import ContactHero from "../components/ContactHero";
 
 const ContactPage: React.FC = () => {
-  const offices = [
-    {
-      city: "San Francisco",
-      address: "123 Trucking Way, San Francisco, CA 94107",
-      phone: "+1 (800) 555-1234",
-      email: "sf@orafreight.com"
-    },
-    {
-      city: "Chicago",
-      address: "456 Logistics Avenue, Chicago, IL 60607",
-      phone: "+1 (800) 555-5678",
-      email: "chicago@orafreight.com"
-    },
-    {
-      city: "Atlanta",
-      address: "789 Transport Blvd, Atlanta, GA 30308",
-      phone: "+1 (800) 555-9012",
-      email: "atlanta@orafreight.com"
-    }
-  ];
-  
   return (
     <>
       <ContactHero />
       <ContactForm />
-      
+
       {/*
       <ParticlesBackground className="py-16 bg-white dark:bg-neutral-950">
         <div className="container mx-auto px-4 relative z-10">

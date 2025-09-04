@@ -2,7 +2,7 @@ import React from "react";
 import { Feature } from "./ui/feature-with-image-comparison";
 import { Button } from "./ui/button";
 import { ServiceFeatureSection } from "./ui/service-feature-section";
-import { CheckCircle, Truck, Briefcase } from "lucide-react";
+import { Truck, Briefcase } from "lucide-react";
 import { ParticlesBackground } from "./ui/particles-background";
 
 interface ServiceCompareFeatureProps {

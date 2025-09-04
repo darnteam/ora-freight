@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Badge } from "./badge";
 import { GripVertical } from "lucide-react";
-import { ServiceFeatureSection } from "./service-feature-section";
 
 interface FeatureProps {
   title?: string;

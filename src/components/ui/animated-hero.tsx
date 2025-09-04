@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { MoveRight, Phone } from "lucide-react";
 import { Button } from "./button";
@@ -75,14 +75,34 @@ function AnimatedHero({
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4">
-            <a href={primaryButtonHref}>
+            <a
+              href={primaryButtonHref}
+              target={
+                primaryButtonHref?.startsWith("http") ? "_blank" : undefined
+              }
+              rel={
+                primaryButtonHref?.startsWith("http")
+                  ? "noopener noreferrer"
+                  : undefined
+              }
+            >
               <Button size="lg" className="px-8 gap-2">
                 {primaryButtonText} <MoveRight className="w-5 h-5" />
               </Button>
             </a>
-            
+
             {showSecondaryButton && (
-              <a href={secondaryButtonHref}>
+              <a
+                href={secondaryButtonHref}
+                target={
+                  secondaryButtonHref?.startsWith("http") ? "_blank" : undefined
+                }
+                rel={
+                  secondaryButtonHref?.startsWith("http")
+                    ? "noopener noreferrer"
+                    : undefined
+                }
+              >
                 <Button size="lg" variant="outline" className="px-8 gap-2">
                   {secondaryButtonText} <Phone className="w-5 h-5" />
                 </Button>
