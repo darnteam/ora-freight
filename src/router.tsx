@@ -5,6 +5,8 @@ import ServicesPage from "./pages/ServicesPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import GetStartedPage from "./pages/GetStartedPage";
+import PrivacyPage from "./pages/PrivacyPage";
+import TermsPage from "./pages/TermsPage";
 import { Header1 } from "./components/ui/header";
 import Footer from "./components/Footer";
 
@@ -29,6 +31,14 @@ const ROUTES = {
   "/get-started": {
     component: GetStartedPage,
     title: "Apply Now",
+  },
+  "/privacy": {
+    component: PrivacyPage,
+    title: "Privacy Policy",
+  },
+  "/terms": {
+    component: TermsPage,
+    title: "Terms of Service",
   },
 };
 

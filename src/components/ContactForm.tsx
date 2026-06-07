@@ -40,17 +40,21 @@ const ContactForm: React.FC = () => {
       flex: false,
       notSure: false,
     },
+    smsConsent: false,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, checked } = e.target;
+    const { name, value, checked, type } = e.target;
     if (name in form.interest) {
       setForm((prev) => ({
         ...prev,
         interest: { ...prev.interest, [name]: checked },
       }));
     } else {
-      setForm((prev) => ({ ...prev, [name]: value }));
+      setForm((prev) => ({
+        ...prev,
+        [name]: type === "checkbox" ? checked : value,
+      }));
     }
   };
 
@@ -71,6 +75,7 @@ const ContactForm: React.FC = () => {
         .filter(([_, v]) => v)
         .map(([k]) => k)
         .join(", "),
+      sms_consent: form.smsConsent ? "Yes — opted in to SMS" : "No",
     };
 
     try {
@@ -90,6 +95,7 @@ const ContactForm: React.FC = () => {
         fleetSize: "",
         years: "",
         interest: { virtualCarrier: false, flex: false, notSure: false },
+        smsConsent: false,
       });
     } catch (err) {
       setError("Failed to send. Please try again.");
@@ -276,6 +282,30 @@ const ContactForm: React.FC = () => {
                 </AccordionItem>
               ))}
             </Accordion>
+            <div className="mt-6 flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-neutral-50 dark:bg-neutral-900 p-4">
+              <input
+                type="checkbox"
+                id="smsConsent"
+                name="smsConsent"
+                checked={form.smsConsent}
+                onChange={handleChange}
+                className="mt-1 h-4 w-4 shrink-0 rounded accent-neutral-900 dark:accent-white"
+              />
+              <label
+                htmlFor="smsConsent"
+                className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed"
+              >
+                By providing my phone number and checking this box, I agree to
+                receive text (SMS) messages from Ora Freight, including
+                customer-care and promotional messages. Consent is not a
+                condition of any purchase. Message frequency varies. Message and
+                data rates may apply. Reply STOP to opt out or HELP for help. See
+                our{" "}
+                <a href="#/privacy" className="underline hover:text-neutral-900 dark:hover:text-white">Privacy Policy</a>{" "}
+                and{" "}
+                <a href="#/terms" className="underline hover:text-neutral-900 dark:hover:text-white">Terms of Service</a>.
+              </label>
+            </div>
             <div className="mt-6">
               <Button className="w-full" type="submit" disabled={sending}>
                 {sending ? "Sending..." : sent ? "Sent!" : "Submit Request"}

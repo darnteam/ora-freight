@@ -51,6 +51,8 @@ function StackedCircularFooter() {
             <a href="#/services" onClick={handleNavLinkClick} className="text-neutral-700 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white">Services</a>
             <a href="#/about" onClick={handleNavLinkClick} className="text-neutral-700 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white">About</a>
             <a href="#/contact" onClick={handleNavLinkClick} className="text-neutral-700 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white">Contact</a>
+            <a href="#/privacy" onClick={handleNavLinkClick} className="text-neutral-700 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white">Privacy Policy</a>
+            <a href="#/terms" onClick={handleNavLinkClick} className="text-neutral-700 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white">Terms of Service</a>
           </nav>
           
           <div className="mb-8 flex space-x-4">
